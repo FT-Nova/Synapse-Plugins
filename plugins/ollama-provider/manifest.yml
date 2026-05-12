@@ -1,0 +1,45 @@
+# SYNAPSE Official Plugin — Ollama Provider
+id: synapse-team/ollama-provider
+name: Ollama Local Provider
+version: 1.0.0
+author: synapse-team
+license: MIT
+repository: https://github.com/FTMahringer/synapse-plugins
+
+type: model-provider
+provider_id: ollama
+
+auth_modes:
+  - none
+
+requires:
+  synapse_version: ">=2.6.0"
+  api_version: ">=1.0.0"
+  java: ">=25"
+
+entry_point: dev.synapse.plugins.ollama.OllamaProviderPlugin
+language: java
+build_system: maven
+
+config_schema:
+  base_url:
+    type: string
+    required: false
+    default: "http://localhost:11434"
+    description: "Base URL for the Ollama server"
+
+  default_model:
+    type: string
+    required: false
+    default: "llama3.2"
+    description: "Default model to use when none specified"
+
+resources:
+  max_threads: 10
+  lifecycle_timeout_seconds: 15
+  message_handler_timeout_seconds: 180
+
+store:
+  description: "Self-hosted models via Ollama. Zero external API calls required."
+  tags: [model-provider, ollama, local, self-hosted, llm, official]
+  icon: "🏠"

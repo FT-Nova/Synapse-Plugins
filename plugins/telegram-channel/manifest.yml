@@ -1,0 +1,47 @@
+# SYNAPSE Official Plugin — Telegram Channel
+id: synapse-team/telegram-channel
+name: Telegram Channel
+version: 1.0.0
+author: synapse-team
+license: MIT
+repository: https://github.com/FTMahringer/synapse-plugins
+
+type: channel
+channel_id: telegram
+
+requires:
+  synapse_version: ">=2.6.0"
+  api_version: ">=1.0.0"
+  java: ">=25"
+
+entry_point: dev.synapse.plugins.telegram.TelegramChannelPlugin
+language: java
+build_system: maven
+
+config_schema:
+  bot_token:
+    type: string
+    required: true
+    secret: true
+    description: "Telegram Bot API token from @BotFather"
+
+  webhook_url:
+    type: string
+    required: false
+    description: "Public HTTPS URL for webhook. Omit to use long-polling."
+
+  polling_interval_ms:
+    type: integer
+    required: false
+    default: 2000
+    description: "Polling interval in ms when webhook is not configured."
+
+resources:
+  max_threads: 15
+  lifecycle_timeout_seconds: 20
+  message_handler_timeout_seconds: 45
+
+store:
+  description: "Connect SYNAPSE agents to Telegram via Bot API. Supports webhook and long-polling."
+  tags: [channel, telegram, messaging, official]
+  icon: "✈️"

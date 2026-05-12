@@ -1,0 +1,51 @@
+# SYNAPSE Official Plugin — OpenAI Provider
+id: synapse-team/openai-provider
+name: OpenAI GPT Provider
+version: 1.0.0
+author: synapse-team
+license: MIT
+repository: https://github.com/FTMahringer/synapse-plugins
+
+type: model-provider
+provider_id: openai
+
+auth_modes:
+  - api_key
+
+requires:
+  synapse_version: ">=2.6.0"
+  api_version: ">=1.0.0"
+  java: ">=25"
+
+entry_point: dev.synapse.plugins.openai.OpenAIProviderPlugin
+language: java
+build_system: maven
+
+config_schema:
+  api_key:
+    type: string
+    required: true
+    secret: true
+    description: "OpenAI API key (sk-...)"
+
+  organization_id:
+    type: string
+    required: false
+    secret: false
+    description: "OpenAI organization ID (org-...)"
+
+  base_url:
+    type: string
+    required: false
+    default: "https://api.openai.com"
+    description: "Override API base URL (Azure/proxy support)"
+
+resources:
+  max_threads: 20
+  lifecycle_timeout_seconds: 30
+  message_handler_timeout_seconds: 120
+
+store:
+  description: "OpenAI GPT models via Chat Completions API. Supports streaming and tool calling."
+  tags: [model-provider, openai, gpt, llm, official]
+  icon: "⚡"

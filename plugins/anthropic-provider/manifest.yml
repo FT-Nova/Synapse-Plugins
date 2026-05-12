@@ -1,0 +1,52 @@
+# SYNAPSE Official Plugin — Anthropic Provider
+id: synapse-team/anthropic-provider
+name: Anthropic Claude Provider
+version: 1.0.0
+author: synapse-team
+license: MIT
+repository: https://github.com/FTMahringer/synapse-plugins
+
+type: model-provider
+provider_id: anthropic
+
+auth_modes:
+  - api_key
+  - acp
+
+requires:
+  synapse_version: ">=2.6.0"
+  api_version: ">=1.0.0"
+  java: ">=25"
+
+entry_point: dev.synapse.plugins.anthropic.AnthropicProviderPlugin
+language: java
+build_system: maven
+
+config_schema:
+  api_key:
+    type: string
+    required: false
+    secret: true
+    description: "Anthropic API key (sk-ant-...). Required if not using ACP."
+
+  acp_subscription_id:
+    type: string
+    required: false
+    secret: true
+    description: "ACP subscription ID. Alternative to api_key."
+
+  base_url:
+    type: string
+    required: false
+    default: "https://api.anthropic.com"
+    description: "Override API base URL."
+
+resources:
+  max_threads: 20
+  lifecycle_timeout_seconds: 30
+  message_handler_timeout_seconds: 120
+
+store:
+  description: "Anthropic Claude models via Messages API. Supports streaming, tool calling, and vision."
+  tags: [model-provider, anthropic, claude, llm, official]
+  icon: "🧠"
