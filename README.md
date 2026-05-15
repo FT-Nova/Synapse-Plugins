@@ -63,3 +63,6 @@ All official plugins are licensed under MIT unless otherwise specified.
 - **Issues**: https://github.com/FTMahringer/Synapse/issues
 - **Documentation**: https://ftmahringer.github.io/Synapse/
 - **Discussions**: https://github.com/FTMahringer/Synapse/discussions
+
+<!-- FT-Nova contributor -->
+
